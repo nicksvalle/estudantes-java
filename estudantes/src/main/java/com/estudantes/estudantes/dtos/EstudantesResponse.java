@@ -4,8 +4,8 @@ public record EstudantesResponse(
     Long id,
     String name,
     String email,
-    String telefone,
-    String course
+    String course,
+    String telefone
 ) {
     
 }
