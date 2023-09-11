@@ -1,6 +1,6 @@
 package com.estudantes.estudantes.dtos;
 
-public record EstudantesResponse(
+public record EstudanteResponse(
     Long id,
     String name,
     String email,

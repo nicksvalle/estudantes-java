@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.estudantes.estudantes.dtos.EstudantesRequest;
-import com.estudantes.estudantes.dtos.EstudantesResponse;
+import com.estudantes.estudantes.dtos.EstudanteRequest;
+import com.estudantes.estudantes.dtos.EstudanteResponse;
 import com.estudantes.estudantes.entities.Estudantes;
 import com.estudantes.estudantes.mappers.EstudantesMapper;
 import com.estudantes.estudantes.repositories.EstudantesRepository;
@@ -40,7 +40,7 @@ public class EstudantesService {
         }
     }
 
-    public EstudantesResponse save(EstudantesRequest product){
+    public EstudanteResponse save(EstudanteRequest product){
         var entity = this.repository.save(EstudantesMapper.toEntity(product));
         return EstudantesMapper.toDTO(entity);
     }

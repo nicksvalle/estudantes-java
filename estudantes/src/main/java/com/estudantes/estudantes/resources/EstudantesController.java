@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.estudantes.estudantes.dtos.EstudantesRequest;
-import com.estudantes.estudantes.dtos.EstudantesResponse;
+import com.estudantes.estudantes.dtos.EstudanteRequest;
+import com.estudantes.estudantes.dtos.EstudanteResponse;
 import com.estudantes.estudantes.entities.Estudantes;
+import com.estudantes.estudantes.mappers.EstudantesMapper;
 import com.estudantes.estudantes.services.EstudantesService;
 
 @RestController
@@ -31,16 +32,16 @@ public class EstudantesController {
     private EstudantesService service;
 
     @GetMapping
-    public ResponseEntity<List<Estudantes>> getEstudantes(){
+    public ResponseEntity<List<EstudanteResponse>> getEstudantes(){
 
         var estudantes = this.service.getEstudantes();
-        return ResponseEntity.ok(estudantes);
+        return ResponseEntity.ok(EstudantesMapper.toDTOList(estudantes));
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Estudantes> getEstudante(@PathVariable long id){
+    public ResponseEntity<EstudanteResponse>getEstudantes(@PathVariable long id){
         var estudantes = this.service.getEstudante(id);
-        return ResponseEntity.ok(estudantes);
+        return ResponseEntity.ok(EstudantesMapper.toDTO(estudantes));
     }
 
     @DeleteMapping("{id}")
@@ -50,7 +51,7 @@ public class EstudantesController {
     }
 
     @PostMapping
-    public ResponseEntity<EstudantesResponse> save(@Validated @RequestBody EstudantesRequest estudantes){
+    public ResponseEntity<EstudanteResponse> save(@Validated @RequestBody EstudanteRequest estudantes){
         var savedEstudantes = this.service.save(estudantes);
 
         URI location = ServletUriComponentsBuilder

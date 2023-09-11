@@ -2,7 +2,7 @@ package com.estudantes.estudantes.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record EstudantesRequest(
+public record EstudanteRequest(
     @NotBlank(message = "Nome não pode ser em branco")
     String name,
     
